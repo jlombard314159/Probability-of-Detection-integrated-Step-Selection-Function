@@ -7,11 +7,11 @@ Maintainer: John Lombardi <jlombardi@west-inc.com>
 Authors: Ryan Nielson ryan@eagleenvironmental.net # are you okay with this order?
          John Lombardi jlombardi@west-inc.com
             Other contributors: 
+                Muckleshoot Indian Tribe (David Vales david.vales@muckleshoot.nsn.us)
                 Trent McDonald (trent@mcdonalddatasciences.com) 
-                Anyone else?
 Description: This package estimates the probability of detection integrated sep selection function (PDiSSF) 
-  presented in Vales et al. (2021), which was originally presented as the "RSF for GPS fix success" 
-  in Nielson et al. (2009). Go to ___url_to_github where we will have access or links to thes articles, 
+  presented in Vales et al. (2022), which was originally presented as the "RSF for GPS fix success" 
+  in Nielson et al. (2009). Go to ___url_to_github where we will have access or links to thes articles,
   some notes for users, and other example data and simulation code. 
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.6)

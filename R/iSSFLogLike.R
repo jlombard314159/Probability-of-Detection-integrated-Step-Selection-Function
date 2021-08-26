@@ -22,8 +22,6 @@ iSSFLogLike <- function (beta, X1, locations, k1) {
       prob[i] <- D[locations[i - 1], locations[i]]
     }
   }
-
+  # print(paste("meaningless", round(runif(1, 0, 100), 0)))
   -sum(log(prob), na.rm = TRUE)
-  print(paste("Working (", round(runif(1, 0, 100), 0), ")")) # just to show something is working think about removing this for debugging
-  
 }

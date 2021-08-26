@@ -4,7 +4,7 @@
 Fits the probability of detection integrated step selection function (PDiSSF)
 }
 \description{
-This package fits the probability of detection integrated detection fucntion presented in Vales et al. (2001), and presented as the "RSF for GPS fix succes" in Nielson et al. (2009). As of now, this package relies on 
+This package fits the probability of detection integrated detection fucntion presented in Vales et al. (2022), and presented as the "RSF for GPS fix succes" in Nielson et al. (2009). As of now, this package relies on 
 totally pre-processed data. See help(habitat) and help(locations) for more details and examples.
 }
 \usage{
@@ -13,12 +13,12 @@ pdissf(habitatDF = habitat,
       iSSFCovars = c("distance", "prctSage", "elevation"), 
       probDetCovars = "prctSage", 
       distColumns = c("utmX","utmY"), 
-      maxLagArg = 4)
+      maxLagArg = 10)
       
 This example fits the PDiSSF described in Nielson et al. (2009) to data from that same paper. 
 
 Note that computing demand can be high, depending fix success, the number of available cells, the number of fix attempts,
-and the number of covariates in the model. Fitting the PDiSSF could take seconds or days. Parallel processing can help with large batches, but...DAVE to finish this sentence. See Vales et al. (2021; __github__ for more information). 
+and the number of covariates in the model. Fitting the PDiSSF could take seconds or days. Parallel processing can help with large batches, but...DAVE to finish this sentence. See Vales et al. (2022; __github__ for more information). 
 }
 \arguments{
   \item{habitatDF}{
@@ -62,23 +62,41 @@ Results of model estimation.
   
   # Computing time for larger data sets may vary WIDELY
   
-  # Standard conditional logistic, if distColumn = NULL.
-  pdissf(habitatDF = habitat, 
-      CellID = locations$unitID, 
-      iSSFCovars = c("prctSage", "elevation"), 
-      probDetCovars = NULL)
-  
-  # integrated step selection function (iSSF) using step length,
+  # integrated step selection function (iSSF) using step length
   pdissf(habitatDF = habitat, 
       CellID = locations$unitID, 
       iSSFCovars = c("distance", "prctSage", "elevation"), 
       probDetCovars = NULL, 
       distColumns = c("utmX","utmY"))
+  # error in hessian: NaN for SE of elevation
+
+  # center elevation to fix
+  habitat$elevationCntrd <- habitat$elevation - mean(habitat$elevation)
+  pdissf(habitatDF = habitat, 
+      CellID = locations$unitID, 
+      iSSFCovars = c("distance", "prctSage", "elevationCntrd"), 
+      probDetCovars = NULL, 
+      distColumns = c("utmX","utmY"))
+
+  # PDiSSF with prctSage as covariate for probability of detection
+  # calculate maximum number consecutive missing locations
+  missing <- ifelse(is.na(locations$unitID), 1, 0)
+  nAttempts <- length(locations$unitID)
+  sinceFix <- rep(0, nAttempts)
+  for(i in 2:nAttempts){
+    if(missing[i] == 1){
+      sinceFix[i] <- missing[i] + sinceFix[i-1] 
+    } else {
+      sinceFix[i] <- 0
+    }
+  }
+  max(sinceFix) # set maxLagArg to 3 or lower
   
-  # PDRSF including step length
   pdissf(habitatDF = habitat, 
       CellID = locations$unitID, 
       iSSFCovars = c("distance", "prctSage", "elevation"), 
-      probDetCovars = "prctSage", distColumns = c("utmX","utmY"))
+      probDetCovars = "prctSage", distColumns = c("utmX","utmY"), maxLagArg = 3)
+
+  
   }
 }
