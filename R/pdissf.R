@@ -1,6 +1,8 @@
-pdissf <- function(habitatDF, CellID, iSSFCovars = NULL, 
-                 probDetCovars = NULL, distColumns = NULL, 
-                 maxLagArg = maxLagArg) {
+pdissf <- function(habitatDF, CellID,  
+                   maxLagArg,numberOfMatrixMult,
+                   iSSFCovars = NULL, 
+                 probDetCovars = NULL, distColumns = NULL) {
+  
   nCells <- nrow(habitatDF)
   if (!is.data.frame(habitatDF)) {
     stop(paste("habitatDF should be a data frame."))
@@ -79,6 +81,7 @@ pdissf <- function(habitatDF, CellID, iSSFCovars = NULL,
   PDiSSFFit <- PDiSSFModel(selection = selectionFormula, p = probDetFormula, 
                 locations = CellID, ncells = nCells, 
                 maxLagArg = maxLagArg, iSSFCovar = iSSFCovars, 
-                LogCovar = c("Intercept", probDetCovars))
+                LogCovar = c("Intercept", probDetCovars),
+                numberOfMatrixMult = numberOfMatrixMult)
   return(PDiSSFFit)
 }

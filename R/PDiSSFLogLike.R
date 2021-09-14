@@ -1,4 +1,5 @@
-PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg) {
+PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg,
+                           numberOfMatrixMult) {
   link <- function(x) {
     exp(x)/(1 + exp(x))
   }
