@@ -8,21 +8,22 @@
 using namespace Rcpp;
 
 // matrixCalcFastTwo
-SEXP matrixCalcFastTwo(Eigen::MatrixXd& matrixOne, int multTimes, Eigen::MatrixXd& matrixOfDiag);
-RcppExport SEXP _PDiSSF_matrixCalcFastTwo(SEXP matrixOneSEXP, SEXP multTimesSEXP, SEXP matrixOfDiagSEXP) {
+SEXP matrixCalcFastTwo(Eigen::MatrixXd& matrixOne, int multTimes, Eigen::MatrixXd& matrixOfDiag, int numberOfMultiplications);
+RcppExport SEXP _PDiSSF_matrixCalcFastTwo(SEXP matrixOneSEXP, SEXP multTimesSEXP, SEXP matrixOfDiagSEXP, SEXP numberOfMultiplicationsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type matrixOne(matrixOneSEXP);
     Rcpp::traits::input_parameter< int >::type multTimes(multTimesSEXP);
     Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type matrixOfDiag(matrixOfDiagSEXP);
-    rcpp_result_gen = Rcpp::wrap(matrixCalcFastTwo(matrixOne, multTimes, matrixOfDiag));
+    Rcpp::traits::input_parameter< int >::type numberOfMultiplications(numberOfMultiplicationsSEXP);
+    rcpp_result_gen = Rcpp::wrap(matrixCalcFastTwo(matrixOne, multTimes, matrixOfDiag, numberOfMultiplications));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_PDiSSF_matrixCalcFastTwo", (DL_FUNC) &_PDiSSF_matrixCalcFastTwo, 3},
+    {"_PDiSSF_matrixCalcFastTwo", (DL_FUNC) &_PDiSSF_matrixCalcFastTwo, 4},
     {NULL, NULL, 0}
 };
 

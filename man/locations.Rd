@@ -25,7 +25,7 @@ fix attempts need to be represented in the data.
 Nielson, R. M., B. F. J. Manly, L. L. McDonald, H. Sawyer, and T. L. McDonald. 2009. Estimating habitat selection when GPS fix success is less than 1. Ecology 90:2956-2962.
 }
 \examples{
-datea("locations")
+data("locations")
 str(locations)
 }
 \keyword{datasets}

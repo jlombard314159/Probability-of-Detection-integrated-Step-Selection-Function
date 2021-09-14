@@ -1,11 +1,11 @@
 Package: PDiSSF
 Type: Package
 Title: Probability of Detection integrated Step Selection Function (PDiSSF)
-Version: 1.0
+Version: 1.0.1
 Date: 2021-07-16
 Maintainer: John Lombardi <jlombardi@west-inc.com>
-Authors: Ryan Nielson ryan@eagleenvironmental.net # are you okay with this order?
-         John Lombardi jlombardi@west-inc.com
+Author: Ryan Nielson <ryan@eagleenvironmental.net> 
+         John Lombardi <jlombardi@west-inc.com>
             Other contributors: 
                 Muckleshoot Indian Tribe (David Vales david.vales@muckleshoot.nsn.us)
                 Trent McDonald (trent@mcdonalddatasciences.com) 
@@ -16,3 +16,4 @@ Description: This package estimates the probability of detection integrated sep 
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.6)
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen
+RoxygenNote: 7.1.2

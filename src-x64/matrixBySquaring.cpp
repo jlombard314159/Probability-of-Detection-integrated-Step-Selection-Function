@@ -29,7 +29,8 @@
 // [[Rcpp::export]]
 
 SEXP matrixCalcFastTwo(Eigen::MatrixXd & matrixOne, int multTimes,
-                       Eigen::MatrixXd & matrixOfDiag)
+                       Eigen::MatrixXd & matrixOfDiag,
+                       int numberOfMultiplications)
 {
   //First, do matrix by squaring if num multiplic > 4
   int i = 0;
@@ -37,7 +38,7 @@ SEXP matrixCalcFastTwo(Eigen::MatrixXd & matrixOne, int multTimes,
   Eigen::MatrixXd  matOutput = matrixOne;
 
   //normal matrix mult
-  if (multTimes < 4)
+  if (multTimes < numberOfMultiplications)
   {
     while (i < multTimes)
     {

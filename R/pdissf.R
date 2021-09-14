@@ -1,5 +1,5 @@
 pdissf <- function(habitatDF, CellID,  
-                   maxLagArg,numberOfMatrixMult,
+                   maxLagArg,numberOfMatrixMult = 4,
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
