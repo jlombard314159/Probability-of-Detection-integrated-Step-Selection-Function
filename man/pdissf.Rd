@@ -40,7 +40,8 @@ Set to NULL for fitting a standard iSSF.
 Names of X and Y coordinates in habitat dataframe, or NULL if not including distance from previous location (aka step length).
 }
   \item{maxLagArg}{
-Recommended that you Do Not Change. Right now the cutoff is 4 consecutive missing observations. If there are 5 or more, then the algorithm pretends that there are only 4. This is done to save computation time, and maybe improve convergence. However, it should be checked how often >4 consecutive missing fixes occur. Maybe play with this arguement a bit to see what could be gained. Likely very little if there are few really long strings of missing fixes in your data. 
+WE ARE REWORKING THIS
+Right now the cutoff is 4 consecutive missing observations. If there are 5 or more, then the algorithm pretends that there are only 4. This is done to save computation time, and maybe improve convergence. However, it should be checked how often >4 consecutive missing fixes occur. Maybe play with this arguement a bit to see what could be gained. Likely very little if there are few really long strings of missing fixes in your data. 
 }
 }
 \value{
@@ -51,11 +52,16 @@ convergence:
   1 = no convergence
   
 }
+\details{
+The computing demand can be high for larger data sets, depending fix success, the number of available cells, the number of fix attempts, and the number of covariates in the model. Fitting the PDiSSF could take seconds or days. The size of the study area (number of cells) has the most influence on memory requirements, processing time, and convergence. Parallel processing (try library parallel) can help when analyzing multiple animals, multitheading with Mircrosf R Open can speed up procesing. Parallel processing will not speed up model estimation, but merely allow the user to fit more than one model at a time. See the Supporting Information in Vales et al. (2022; __github__ for more information). 
+}
+
 \seealso{
 \code{\link{PDiSSF}}
 \code{\link{habitat}}
 \code{\link{locations}}
 }
+
 \examples{
   \dontrun{
   data(habitat)
@@ -72,9 +78,8 @@ convergence:
       iSSFCovars = c("distance", "prctSage", "elevation"), 
       probDetCovars = NULL, 
       distColumns = c("utmX","utmY"))
-  # problem wiht hessian: NaN for SE of elevation
-
-  # center elevation to fix
+  
+  # problem with hessian: center elevation to fix problem
   habitat$elevationCntrd <- habitat$elevation - mean(habitat$elevation)
   pdissf(habitatDF = habitat, 
       CellID = locations$unitID, 
@@ -83,7 +88,7 @@ convergence:
       distColumns = c("utmX","utmY"))
 
   # PDiSSF with prctSage as covariate for probability of detection
-  # calculate maximum number consecutive missing locations
+  # calculate maximum number consecutive missing locations MODIFYING THIS
   missing <- ifelse(is.na(locations$unitID), 1, 0)
   nAttempts <- length(locations$unitID)
   sinceFix <- rep(0, nAttempts)
