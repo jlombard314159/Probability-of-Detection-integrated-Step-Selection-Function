@@ -1,5 +1,5 @@
 pdissf <- function(habitatDF, CellID,  
-                   maxLagArg,numberOfMatrixMult = 4,
+                   maxLagArg,
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
@@ -81,7 +81,6 @@ pdissf <- function(habitatDF, CellID,
   PDiSSFFit <- PDiSSFModel(selection = selectionFormula, p = probDetFormula, 
                 locations = CellID, ncells = nCells, 
                 maxLagArg = maxLagArg, iSSFCovar = iSSFCovars, 
-                LogCovar = c("Intercept", probDetCovars),
-                numberOfMatrixMult = numberOfMatrixMult)
+                LogCovar = c("Intercept", probDetCovars))
   return(PDiSSFFit)
 }

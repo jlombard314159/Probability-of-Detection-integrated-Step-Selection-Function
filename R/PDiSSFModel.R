@@ -1,5 +1,5 @@
 PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar, 
-    LogCovar,numberOfMatrixMult) {
+    LogCovar) {
     if (missing(selection)) 
         stop("Model for habitat selection must be specified")
     if (missing(p)) 
@@ -39,16 +39,14 @@ PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar,
         strt.vals <- rep(0, k.iSSF + k.p)
         out <- nlminb(start = strt.vals, objective = PDiSSFLogLike, 
             X1 = X.iSSF, X2 = X.p, locations = locations, k1 = k.iSSF, 
-            k2 = k.p, maxLagArg = maxLagArg,
-            numberOfMatrixMult = numberOfMatrixMult)
+            k2 = k.p, maxLagArg = maxLagArg)
         
         iSSF.coefs <- out$par[1:k.iSSF]
         p.coefs <- out$par[(k.iSSF + 1):(k.iSSF + k.p)]
         
         hessian <- F.2nd.deriv(out$par, PDiSSFLogLike, X1 = X.iSSF, 
                     X2 = X.p, locations = locations, k1 = k.iSSF, 
-                    k2 = k.p, maxLagArg = maxLagArg,
-                    numberOfMatrixMult = numberOfMatrixMult)
+                    k2 = k.p, maxLagArg = maxLagArg)
         SEs <- sqrt(diag(solve(hessian)))
 
         # iSSFDataframe <- data.frame(Covar = iSSFCovar, Coef = iSSF.coefs[order(iSSFCovar)], ### original

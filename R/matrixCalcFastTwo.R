@@ -1,4 +1,4 @@
-matrixCalcFastTwo <- function (matrixOne, multTimes, matrixOfDiag, numberOfMultiplications) {
+matrixCalcFastTwo <- function (matrixOne, multTimes, matrixOfDiag) {
   .Call("_PDiSSF_matrixCalcFastTwo", PACKAGE = "PDiSSF", matrixOne, 
-        multTimes, matrixOfDiag,numberOfMultiplications)
+        multTimes, matrixOfDiag)
 }
