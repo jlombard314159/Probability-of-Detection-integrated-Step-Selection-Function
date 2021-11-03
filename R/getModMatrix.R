@@ -1,3 +1,13 @@
+#' @name getModMatrix
+#'
+#' @description Mainly a helper function, this creates the model matrix for
+#' the optimization process
+#' 
+#' @param f model formula
+#' 
+#' @param ncells number of cells in the study area
+
+
 getModMatrix <- function (f, ncells){
   call <- match.call()
   contrasts <- NULL

@@ -1,3 +1,24 @@
+#' @name PDiSSFModel
+#'
+#' @description Sets up the parameter estimation for the log-likelihood function
+#' 
+#' @param selection Model for habitat selection
+#' 
+#' @param p Model for encounter probabilities
+#' 
+#' @param locations Dataframe of animal locations
+#' 
+#' @param ncells Number of cells in the study area
+#' 
+#' @param maxLagArg Number of matrix multiplications to toggle the matrix by
+#' squaring algorithm. The default is 4 and it is not recommended to change this.
+#' 
+#' @param iSSFCovar Covariates for the iSSF
+#' 
+#' @param LogCovar Covariate for ...
+#' 
+#' 
+
 PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar, 
     LogCovar) {
     if (missing(selection)) 

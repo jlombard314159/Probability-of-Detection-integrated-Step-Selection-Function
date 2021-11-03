@@ -1,3 +1,15 @@
+#' @name F.2nd.deriv
+#'
+#' @description This function calculates the second derivative (hessian value)
+#' for a function
+#' 
+#' @param x A vector
+#' @param FUN function to be inputted
+#' 
+#' @return 
+#' 
+#' 
+
 F.2nd.deriv <- 
   function (x, FUN, ...) 
   {
