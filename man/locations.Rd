@@ -19,9 +19,7 @@ Animal locations (cellIDs)
   }
 }
 \details{
-Cell ID values should represent which cell the animal was in at every fix attempt, so NA's exist when the animal
-wasn't located. The 'fix' column is not necessary for analysis, because we have assumed that you have sorted the data by 
-fix attempt. Thus, this is just a reminder to double-check. 
+Cell ID values should represent which cell the animal was in at every fix attempt, so NA's exist when the GPS unit failed to record a reliable location. The 'fix' column is unnecessary for analysis because we have assumed that you have sorted the data by date and time or fix attempt. Thus, this is just a reminder to double-check. 
 
 This data is from Nielson et al. (2009). 
 

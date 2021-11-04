@@ -55,6 +55,6 @@ PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg,
                                                       1]] %*% D[, locations[i]]
     }
   }
-  print(paste("meaningless", round(runif(1, 0, 100), 0)))
+  cat(paste("Progress made at", Sys.time(), "\r"))
   -sum(log(prob), na.rm = TRUE)
 }

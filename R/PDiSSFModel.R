@@ -27,8 +27,7 @@ PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar,
         ans <- list(loglik = -out$objective, convergence = out$convergence, 
             call = orig.call, ncells = ncells, n.fix.attempts = length(locations), 
             iSSF = iSSFDataframe, aic = 2 * out$objective + 2 * 
-                (k.iSSF), bic = 2 * out$objective + (k.iSSF) * 
-                log(sum(!is.na(locations)) - 1))
+                (k.iSSF))
         class(ans) <- "PDiSSF"
         return(ans)
     }
