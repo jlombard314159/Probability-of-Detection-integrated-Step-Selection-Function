@@ -36,6 +36,6 @@ iSSFLogLike <- function (beta, X1, locations, k1) {
       prob[i] <- D[locations[i - 1], locations[i]]
     }
   }
-  # print(paste("meaningless", round(runif(1, 0, 100), 0)))
+  cat(paste("Progress made at", Sys.time(), "\r"))
   -sum(log(prob), na.rm = TRUE)
 }

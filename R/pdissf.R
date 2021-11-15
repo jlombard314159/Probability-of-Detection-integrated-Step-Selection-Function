@@ -26,6 +26,10 @@ pdissf <- function(habitatDF, CellID,
   if (!is.data.frame(habitatDF)) {
     stop(paste("habitatDF should be a data frame."))
   }
+  # notNAs <- sum(!is.na(CellID))
+  # if(sum(CellID %in% habitatDF$CellID) !=  notNAs) {
+  #   stop(paste("at least one CellID does not match any of the habitatIDs."))
+  # }
   factorHabitat <- sapply(habitatDF, is.factor)
   factorHabitat <- factorHabitat[!(factorHabitat == FALSE)]
   toConvertHabitat <- names(factorHabitat)
