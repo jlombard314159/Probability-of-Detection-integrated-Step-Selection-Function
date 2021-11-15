@@ -4,7 +4,11 @@
 #' 
 #' @param habitatDF Dataframe of habitat information
 #' 
-#' @param CellID Column that contains the unique ID for animals
+#' @param CellID Column that contains the unique ID for a cell location in the study
+#' area
+#' 
+#' @param habitatCellID Column in the habitat DF that contains unique ID for the
+#' habitat data
 #' 
 #' @param maxLagArg Number of matrix multiplications to toggle the matrix by
 #' squaring algorithm. The default is 4 and it is not recommended to change this.
@@ -18,7 +22,7 @@
 #' 
 
 pdissf <- function(habitatDF, CellID,  
-                   maxLagArg,
+                   maxLagArg, habitatCellID = 'unitID',
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
@@ -26,12 +30,24 @@ pdissf <- function(habitatDF, CellID,
   if (!is.data.frame(habitatDF)) {
     stop(paste("habitatDF should be a data frame."))
   }
-  # notNAs <- sum(!is.na(CellID))
-  # if(sum(CellID %in% habitatDF$CellID) !=  notNAs) {
-  #   stop(paste("at least one CellID does not match any of the habitatIDs."))
-  # }
+  
+  noNACellID <- unique(CellID[!is.na(CellID)])
+  
+  locationNotInHabitat <- noNACellID %in% habitatDF[,habitatCellID]
+  
+  idMismatch <- any(!locationNotInHabitat)
+  
+  if(idMismatch){
+    errorMessage <- paste("at least one CellID does not match any of the habitatIDs. Check the following IDs: ",
+                          noNACellID[!locationNotInHabitat])
+    
+    stop(errorMessage)
+    
+  }
+
   factorHabitat <- sapply(habitatDF, is.factor)
   factorHabitat <- factorHabitat[!(factorHabitat == FALSE)]
+  
   toConvertHabitat <- names(factorHabitat)
   factorDF <- as.data.frame(habitatDF[, colnames(habitatDF) %in% 
                                         toConvertHabitat])
@@ -63,9 +79,13 @@ pdissf <- function(habitatDF, CellID,
     habitatDF <- habitatDF[, !(colnames(habitatDF) %in% toConvertHabitat)]
     habitatDF <- cbind(habitatDF, newDF)
   }
-  distMatrix <- as.matrix(x = stats::dist(cbind(habitatDF[, # why do this if you don't have to ?
-                                                         colnames(habitatDF) %in% distColumns[1]], habitatDF[, 
-                                                                                                             colnames(habitatDF) %in% distColumns[2]])))
+  
+  if(!is.null(distColumns)){
+  distMatrix <- as.matrix(x = stats::dist(cbind(habitatDF[,colnames(habitatDF) %in% distColumns[1]],
+                                                habitatDF[,colnames(habitatDF) %in% distColumns[2]])))
+  
+  }
+  
   if (is.null(iSSFCovars)) {
     stop("A covariate must be specific for the iSSF")
   } else {

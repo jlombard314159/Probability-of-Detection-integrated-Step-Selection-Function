@@ -31,10 +31,12 @@ PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar,
         stop("Cell ID #s are not correct")
     if (!is.numeric(locations)) # Consider moving one above
         stop("Cell ID #s are not numeric")
+  
     orig.call <- match.call()
     iSSF.mod.mat <- getModMatrix(selection, ncells)
     X.iSSF <- iSSF.mod.mat$X
     k.iSSF <- iSSF.mod.mat$n.covars
+    
     if (is.null(p)) {
         strt.vals <- rep(0, k.iSSF)
         out <- nlminb(start = strt.vals, objective = iSSFLogLike, 
