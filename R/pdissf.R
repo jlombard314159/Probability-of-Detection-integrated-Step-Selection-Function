@@ -1,5 +1,24 @@
+#' @name pdissf
+#'
+#' @description Helper function to set up the log-likelihood estimation
+#' 
+#' @param habitatDF Dataframe of habitat information
+#' 
+#' @param CellID Column that contains the unique ID for animals
+#' 
+#' @param maxLagArg Number of matrix multiplications to toggle the matrix by
+#' squaring algorithm. The default is 4 and it is not recommended to change this.
+#' 
+#' @param iSSFCovars covariates in the integrated step selection function model
+#' 
+#' @param probDetCovars covariates for the probability of detection
+#' 
+#' @param distColumns If distance is needed as a covariate, in either iSSF or the
+#' probability of detection, then identify the columns that contain this information
+#' 
+
 pdissf <- function(habitatDF, CellID,  
-                   numberOfMatrixMult = 4,
+                   maxLagArg,
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
@@ -85,7 +104,6 @@ pdissf <- function(habitatDF, CellID,
   PDiSSFFit <- PDiSSFModel(selection = selectionFormula, p = probDetFormula, 
                 locations = CellID, ncells = nCells, 
                 maxLagArg = maxLagArg, iSSFCovar = iSSFCovars, 
-                LogCovar = c("Intercept", probDetCovars),
-                numberOfMatrixMult = numberOfMatrixMult)
+                LogCovar = c("Intercept", probDetCovars))
   return(PDiSSFFit)
 }

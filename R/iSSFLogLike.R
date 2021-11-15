@@ -1,3 +1,17 @@
+#' @name iSSFLogLike
+#'
+#' @description The log-likelihood formulation for the iSSF
+#' 
+#' @param beta Coefficients to be estimated
+#' 
+#' @param X1 Data from the covariates for the iSSF component
+#' 
+#' @param locations data frame of GPS fixes
+#' 
+#' @param k1 Number of covariates for the iSSF
+#' 
+
+
 iSSFLogLike <- function (beta, X1, locations, k1) {
   iSSF.coefs <- beta[1:k1]
   ncells <- nrow(X1)

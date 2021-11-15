@@ -1,5 +1,26 @@
-PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg,
-                           numberOfMatrixMult) {
+#' @name PDiSSFLogLike
+#'
+#' @description Calculates the loglikelihood value for a set of parameters
+#' 
+#' @param beta Coefficients to be estimated
+#' 
+#' @param X1 Data from the covariates for the iSSF component
+#' 
+#' @param X2 Data from the covariates for the probability of detection component
+#' 
+#' @param locations data frame of GPS fixes
+#' 
+#' @param k1 Number of covariates for the iSSF
+#' 
+#' @param k2 Number of covariates for probability of detection. Equal to 0
+#' if no probability of detection is being estimated.
+#' 
+#' @param maxLagArg Number of matrix multiplications to toggle the matrix by
+#' squaring algorithm. The default is 4 and it is not recommended to change this.
+#' 
+#' 
+
+PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg) {
   link <- function(x) {
     exp(x)/(1 + exp(x))
   }

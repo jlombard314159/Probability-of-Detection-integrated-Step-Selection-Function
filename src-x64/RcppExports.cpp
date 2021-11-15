@@ -7,11 +7,6 @@
 
 using namespace Rcpp;
 
-#ifdef RCPP_USE_GLOBAL_ROSTREAM
-Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
-Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
-#endif
-
 // matrixCalcFastTwo
 SEXP matrixCalcFastTwo(Eigen::MatrixXd& matrixOne, int multTimes, Eigen::MatrixXd& matrixOfDiag);
 RcppExport SEXP _PDiSSF_matrixCalcFastTwo(SEXP matrixOneSEXP, SEXP multTimesSEXP, SEXP matrixOfDiagSEXP) {
