@@ -36,17 +36,20 @@ PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar,
     iSSF.mod.mat <- getModMatrix(selection, ncells)
     X.iSSF <- iSSF.mod.mat$X
     k.iSSF <- iSSF.mod.mat$n.covars
-    
+
     if (is.null(p)) {
         strt.vals <- rep(0, k.iSSF)
         out <- nlminb(start = strt.vals, objective = iSSFLogLike, 
             X1 = X.iSSF, locations = locations, k1 = k.iSSF)
+        
         hessian = F.2nd.deriv(out$par, iSSFLogLike, X1 = X.iSSF, 
                          locations = locations, k1 = k.iSSF)
+        
         SEs <- sqrt(diag(solve(hessian)))
         iSSF.coefs <- out$par[1:k.iSSF]
         iSSFDataframe <- data.frame(Covar = iSSFCovar, Coef = iSSF.coefs, 
             SE = SEs[1:k.iSSF])
+        
         ans <- list(loglik = -out$objective, convergence = out$convergence, 
             call = orig.call, ncells = ncells, n.fix.attempts = length(locations), 
             iSSF = iSSFDataframe, aic = 2 * out$objective + 2 * 

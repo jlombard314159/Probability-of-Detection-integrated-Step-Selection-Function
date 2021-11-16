@@ -13,6 +13,7 @@
 
 
 iSSFLogLike <- function (beta, X1, locations, k1) {
+  
   iSSF.coefs <- beta[1:k1]
   ncells <- nrow(X1)
   fix.attempts <- length(locations)

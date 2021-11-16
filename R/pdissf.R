@@ -26,9 +26,16 @@ pdissf <- function(habitatDF, CellID,
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
+  distMatrix <- NULL
+  
   nCells <- nrow(habitatDF)
   if (!is.data.frame(habitatDF)) {
     stop(paste("habitatDF should be a data frame."))
+  }
+  
+  if(!(habitatCellID %in% colnames(habitatDF))){
+    
+    stop(paste('Your habitat DF does not have the column: ', habitatCellID))
   }
   
   noNACellID <- unique(CellID[!is.na(CellID)])
@@ -96,6 +103,7 @@ pdissf <- function(habitatDF, CellID,
       matrixList[[i]] <- matrix(habitatDFSub[, i], nrow = nCells, 
                                 ncol = nCells, byrow = T)
     }
+
     if (!is.null(distMatrix) & ("distance" %in% iSSFCovars)) {
       matrixList[[length(matrixList) + 1]] <- distMatrix
     }

@@ -1,11 +1,11 @@
 Package: PDiSSF
 Type: Package
 Title: Probability of Detection integrated Step Selection Function (PDiSSF)
-Version: 1.0.1
-Date: 2021-07-16
-Maintainer: John Lombardi <jlombardi@west-inc.com>
+Version: 1.0.2
+Date: 2021-11-15
+Maintainer: John Lombardi <jlombard314@gmail.com>
 Author: Ryan Nielson <ryan@eagleenvironmental.net> 
-         John Lombardi <jlombardi@west-inc.com>
+         John Lombardi <jlombard314@gmail.com>
             Other contributors: 
                 Muckleshoot Indian Tribe (David Vales david.vales@muckleshoot.nsn.us)
                 Trent McDonald (trent@mcdonalddatasciences.com) 
