@@ -9,9 +9,9 @@ Animal locations (cellIDs)
 }
 \usage{data("locations")}
 \format{
-  A data frame with 444 observations on the following 2 variables.
+  A data frame with 444 attempted deer locations and the following 2 variables.
   \describe{
-    \item{\code{unitID}}{Cell IDs. Must use the same name in the "habitat" file.}
+    \item{\code{unitID}}{Cell IDs. Must use the same name in the "habitat" file. Missing fixes need to be represented by = NA in the data.}
     \item{\code{fixAttempt}}{Integers representing sequential fix attempts. Locations are sorted accordingly.
           fix = 1 for first attempt (always successful)
           fix = 2 for second attempt (successful or not)

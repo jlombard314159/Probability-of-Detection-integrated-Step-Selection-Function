@@ -44,12 +44,8 @@ When there is a large gap of consecutive missing locations (Lag) in the data, mo
 }
 }
 \value{
-Results of model estimation. 
-Show results here?
-convergence: 
-  0 = converged
-  1 = no convergence
-  
+Results of model estimation. converged = 0 if the algorithim converged, and 1 if there was not covergence.  
+
 }
 \details{
 As-is, the analysis ignores any changes in fix schedule. 
@@ -81,8 +77,8 @@ The system time is printed to the console to indicate that model estimation is o
       iSSFCovars = c("distance", "prctSage", "elevation"), 
       probDetCovars = NULL, 
       distColumns = c("utmX","utmY"))
-  
   # problem with hessian: center elevation to fix problem
+  
   habitat$elevationCntrd <- habitat$elevation - mean(habitat$elevation)
   pdissf(habitatDF = habitat, 
       CellID = locations$unitID, 
