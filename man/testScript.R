@@ -31,9 +31,12 @@ pdissf(habitatDF = habitat,
 
 
 ##For jal testing
-locations$unitID[locations$unitID == 1] <- 'BOB'
-habitat$unitID[habitat$unitID == 1] <- 'BOB'
+locations$unitID[locations$unitID == 1] <- 'A1'
+habitat$unitID[habitat$unitID == 1] <- 'B1'
 
-locations$unitID[locations$unitID == 108] <- 'woohoo'
-habitat$unitID[habitat$unitID == 108] <- 'woohoo'
 
+#Testing for non numeric cell IDs
+pdissf(habitatDF = habitat, 
+       CellID = locations$unitID, 
+       iSSFCovars = c("prctSage", "elevation"), 
+       probDetCovars = NULL)
