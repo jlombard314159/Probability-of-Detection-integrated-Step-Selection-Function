@@ -28,3 +28,12 @@ pdissf(habitatDF = habitat,
        probDetCovars = "prctSage", distColumns = c("utmX","utmY"))
 
 ## End(Not run)
+
+
+##For jal testing
+locations$unitID[locations$unitID == 1] <- 'BOB'
+habitat$unitID[habitat$unitID == 1] <- 'BOB'
+
+locations$unitID[locations$unitID == 108] <- 'woohoo'
+habitat$unitID[habitat$unitID == 108] <- 'woohoo'
+

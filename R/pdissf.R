@@ -51,6 +51,17 @@ pdissf <- function(habitatDF, CellID,
     stop(errorMessage)
     
   }
+  
+  #Account for non-numeric cell ID
+  habitatDF <- convertUnitIDToNumeric(habitatDF, unitCol = habitatCellID)
+  
+  updatedLocations <- updateLocationUnitID(habitatData=habitatDF,
+                                            locationData = CellID,
+                                            habitatUnitCol = habitatCellID)
+  
+  CellID <- updatedLocations$numericUnitID
+  
+  habitatDF[,habitatCellID] <- habitatDF$numericUnitID
 
   factorHabitat <- sapply(habitatDF, is.factor)
   factorHabitat <- factorHabitat[!(factorHabitat == FALSE)]
