@@ -1,3 +1,5 @@
+#' pdissf
+#' 
 #' @name pdissf
 #'
 #' @description Helper function to set up the log-likelihood estimation

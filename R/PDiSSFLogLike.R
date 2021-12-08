@@ -1,3 +1,5 @@
+#' PDiSSFLogLike
+#' 
 #' @name PDiSSFLogLike
 #'
 #' @description Calculates the loglikelihood value for a set of parameters

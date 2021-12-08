@@ -1,3 +1,5 @@
+#' PDiSSFModel
+#' 
 #' @name PDiSSFModel
 #'
 #' @description Sets up the parameter estimation for the log-likelihood function

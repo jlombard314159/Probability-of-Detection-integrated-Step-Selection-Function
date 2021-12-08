@@ -1,3 +1,5 @@
+#' getModMatrix
+#' 
 #' @name getModMatrix
 #'
 #' @description Mainly a helper function, this creates the model matrix for

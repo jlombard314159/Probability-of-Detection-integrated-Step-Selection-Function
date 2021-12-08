@@ -1,3 +1,5 @@
+#' iSSFLogLike
+#' 
 #' @name iSSFLogLike
 #'
 #' @description The log-likelihood formulation for the iSSF

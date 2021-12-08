@@ -1,3 +1,5 @@
+#' F.2nd.deriv
+#'
 #' @name F.2nd.deriv
 #'
 #' @description This function calculates the second derivative (hessian value)

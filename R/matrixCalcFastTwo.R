@@ -1,3 +1,5 @@
+#' matrixCalcFastTwo
+#' 
 #' @name matrixCalcFastTwo
 #'
 #' @description Calls the rcpp file
