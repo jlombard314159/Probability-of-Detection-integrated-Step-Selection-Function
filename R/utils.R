@@ -1,5 +1,5 @@
 convertUnitIDToNumeric <- function(habitatData, unitCol='unitID'){
-  
+
   sortedVector <- sort(habitatData[,unitCol])
   
   indexVector <- seq(1,length(sortedVector),1)
@@ -7,7 +7,7 @@ convertUnitIDToNumeric <- function(habitatData, unitCol='unitID'){
   mergeDF <- data.frame(unitCol = sortedVector, 
                         'numericUnitID'=indexVector)
   
-  habitatData$numericUnitID <- mergeDF$numericUnitID[match(paste(habitatData$unitID),
+  habitatData$numericUnitID <- mergeDF$numericUnitID[match(paste(habitatData[,unitCol]),
                                                            paste(mergeDF$unitCol))]
   
   

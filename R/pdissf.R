@@ -24,7 +24,7 @@
 #' 
 
 pdissf <- function(habitatDF, CellID,  
-                   maxLagArg, habitatCellID = 'unitID',
+                   maxLagArg = 4, habitatCellID = 'unitID',
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
@@ -53,7 +53,7 @@ pdissf <- function(habitatDF, CellID,
     stop(errorMessage)
     
   }
-  
+
   #Account for non-numeric cell ID
   habitatDF <- convertUnitIDToNumeric(habitatDF, unitCol = habitatCellID)
   

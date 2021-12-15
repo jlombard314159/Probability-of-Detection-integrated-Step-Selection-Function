@@ -25,7 +25,8 @@ pdissf(habitatDF = habitat,
 pdissf(habitatDF = habitat, 
        CellID = locations$unitID, 
        iSSFCovars = c("distance", "prctSage", "elevation"), 
-       probDetCovars = "prctSage", distColumns = c("utmX","utmY"))
+       probDetCovars = "prctSage", distColumns = c("utmX","utmY"),
+       maxLagArg = 4)
 
 ## End(Not run)
 
@@ -34,9 +35,12 @@ pdissf(habitatDF = habitat,
 locations$unitID[locations$unitID == 1] <- 'A1'
 habitat$unitID[habitat$unitID == 1] <- 'B1'
 
-
+locations$pointID <- locations$unitID
+habitat$pointID <- habitat$unitID
+habitat$unitID <- NULL
 #Testing for non numeric cell IDs
 pdissf(habitatDF = habitat, 
-       CellID = locations$unitID, 
+       habitatCellID = 'pointID',
+       CellID = locations$pointID, 
        iSSFCovars = c("prctSage", "elevation"), 
        probDetCovars = NULL)
