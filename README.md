@@ -1,3 +1,5 @@
 Probability-of-Detection-integrated-Step-Selection-Function
 
-# This code comes with no guarantees and limited support. Unfortunately, we are not currently funded to maintain this GitHub site or help with specific study design or analysis questions. However, your comments and ideas are welcome, and if funding is available, we are happy to help.
+# This R package comes with no guarantees, and technical support is limited. See Supporting Information from Vales et al. (2022; link here).  
+
+We appreciate thoughtful suggestions for future improvements. Future development of this package may include using raster files for covariate layers and simplifying data preparation for the user.
