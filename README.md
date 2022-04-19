@@ -7,7 +7,7 @@ We appreciate thoughtful suggestions for future improvements. Future development
 # Installing the Package
 
 The recommended approach for installing PDiSSF is to use download the .zip file and install to R locally. 
-The recommended specifications for installing the package are: R  version blah blah.
+The recommended specifications for installing the package are: R >= 4.0.0. 
 
 
 
@@ -18,7 +18,7 @@ GPS collars or backpacks attached to animals can fail to connect to satellites f
 This package estimates the probability of detection integrated step selection function (PDiSSF). The PDiSSF was developed to simultaneously model animal movement and habitat selection and the probability of detection given habitat conditions. The PDiSSF is described in Vales et al. (2022) but was initially presented as the "RSF for GPS fix success" in Nielson et al. (2009).
 
 ### Authors 
-John Lombardi (jlombard314@gmail.com) and Ryan Nielson (Eagle Environmental, Inc.)
+John Lombardi (jlombard314@gmail.com) and Ryan Nielson (Eagle Environmental, Inc.; ryan@eagleenvironmental.net)
 
 Maintainer: jlombard314@gmail.com
 
