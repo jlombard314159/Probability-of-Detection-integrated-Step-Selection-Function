@@ -17,12 +17,12 @@
 #' @param k2 Number of covariates for probability of detection. Equal to 0
 #' if no probability of detection is being estimated.
 #' 
-#' @param maxLagArg Number of matrix multiplications to toggle the matrix by
-#' squaring algorithm. The default is 4 and it is not recommended to change this.
-#' 
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 4
+#' (3 consecutive missing locations). Larger max lags will increase computing time
+#' and may result in non convergence.
 #' 
 
-PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg) {
+PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maximumGap) {
   link <- function(x) {
     exp(x)/(1 + exp(x))
   }
@@ -55,8 +55,8 @@ PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maxLagArg) {
     if (max(Lag) > 2) {
       for (j in 3:max(Lag - 1)) {
         output <- B
-        if (length(3:j) > maxLagArg) {
-          numMults <- maxLagArg
+        if (length(3:j) > maximumGap) {
+          numMults <- maximumGap
         }
         else {
           numMults <- length(3:j)

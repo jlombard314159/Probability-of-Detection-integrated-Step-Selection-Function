@@ -7,8 +7,8 @@
 pdissf(
   habitatDF,
   CellID,
-  maxLagArg,
-  habitatCellID = "unitID",
+  habitatCellID,
+  maximumGap = 4,
   iSSFCovars = NULL,
   probDetCovars = NULL,
   distColumns = NULL
@@ -20,11 +20,12 @@ pdissf(
 \item{CellID}{Column that contains the unique ID for a cell location in the study
 area}
 
-\item{maxLagArg}{Number of matrix multiplications to toggle the matrix by
-squaring algorithm. The default is 4 and it is not recommended to change this.}
-
 \item{habitatCellID}{Column in the habitat DF that contains unique ID for the
 habitat data}
+
+\item{maximumGap}{Maximum allowable number of consecutive missing fixes. Default is 4
+(3 consecutive missing locations). Larger max lags will increase computing time
+and may result in non convergence.}
 
 \item{iSSFCovars}{covariates in the integrated step selection function model}
 
@@ -35,4 +36,38 @@ probability of detection, then identify the columns that contain this informatio
 }
 \description{
 Helper function to set up the log-likelihood estimation
+}
+\examples{
+library(PDiSSF)
+data(habitat)
+data(locations)
+
+# Fix success rate
+mean(!is.na(locations$unitID))
+
+# Computing time for larger data sets may vary WIDELY
+
+pdissf(habitatDF = habitat, 
+       habitatCellID = 'unitID',
+       CellID = locations$unitID,
+       iSSFCovars = c("prctSage", "elevation"), 
+       probDetCovars = NULL)
+
+# integrated step selection function (iSSF) using step length,
+pdissf(habitatDF = habitat,
+       habitatCellID = 'unitID',
+       CellID = locations$unitID, 
+       iSSFCovars = c("distance", "prctSage", "elevation"), 
+       probDetCovars = NULL, 
+       distColumns = c("utmX","utmY"))
+
+# PDRSF including step length
+pdissf(habitatDF = habitat, 
+       habitatCellID = 'unitID',
+       CellID = locations$unitID, 
+       iSSFCovars = c("distance", "prctSage", "elevation"), 
+       probDetCovars = "prctSage", distColumns = c("utmX","utmY"),
+       maximumGap = 4)
+
+
 }

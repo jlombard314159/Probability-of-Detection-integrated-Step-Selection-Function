@@ -4,7 +4,7 @@
 \alias{PDiSSFModel}
 \title{PDiSSFModel}
 \usage{
-PDiSSFModel(selection, p, locations, ncells, maxLagArg, iSSFCovar, LogCovar)
+PDiSSFModel(selection, p, locations, ncells, maximumGap, iSSFCovar, LogCovar)
 }
 \arguments{
 \item{selection}{Model for habitat selection}
@@ -15,8 +15,9 @@ PDiSSFModel(selection, p, locations, ncells, maxLagArg, iSSFCovar, LogCovar)
 
 \item{ncells}{Number of cells in the study area}
 
-\item{maxLagArg}{Number of matrix multiplications to toggle the matrix by
-squaring algorithm. The default is 4 and it is not recommended to change this.}
+\item{maximumGap}{Maximum allowable number of consecutive missing fixes. Default is 4
+(3 consecutive missing locations). Larger max lags will increase computing time
+and may result in non convergence.}
 
 \item{iSSFCovar}{Covariates for the iSSF}
 

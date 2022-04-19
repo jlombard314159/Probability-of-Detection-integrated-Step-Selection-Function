@@ -12,8 +12,9 @@
 #' @param habitatCellID Column in the habitat DF that contains unique ID for the
 #' habitat data
 #' 
-#' @param maxLagArg Number of matrix multiplications to toggle the matrix by
-#' squaring algorithm. The default is 4 and it is not recommended to change this.
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 4
+#' (3 consecutive missing locations). Larger max lags will increase computing time
+#' and may result in non convergence.
 #' 
 #' @param iSSFCovars covariates in the integrated step selection function model
 #' 
@@ -22,9 +23,44 @@
 #' @param distColumns If distance is needed as a covariate, in either iSSF or the
 #' probability of detection, then identify the columns that contain this information
 #' 
-
-pdissf <- function(habitatDF, CellID,  
-                   maxLagArg = 4, habitatCellID = 'unitID',
+#' 
+#' @examples
+#' library(PDiSSF)
+#' data(habitat)
+#' data(locations)
+#' 
+#' # Fix success rate
+#' mean(!is.na(locations$unitID))
+#' 
+#' # Computing time for larger data sets may vary WIDELY
+#' 
+# Standard conditional logistic, if distColumn = NULL.
+#' pdissf(habitatDF = habitat, 
+#'        habitatCellID = 'unitID',
+#'        CellID = locations$unitID,
+#'        iSSFCovars = c("prctSage", "elevation"), 
+#'        probDetCovars = NULL)
+#' 
+#' # integrated step selection function (iSSF) using step length,
+#' pdissf(habitatDF = habitat,
+#'        habitatCellID = 'unitID',
+#'        CellID = locations$unitID, 
+#'        iSSFCovars = c("distance", "prctSage", "elevation"), 
+#'        probDetCovars = NULL, 
+#'        distColumns = c("utmX","utmY"))
+#' 
+#' # PDRSF including step length
+#' pdissf(habitatDF = habitat, 
+#'        habitatCellID = 'unitID',
+#'        CellID = locations$unitID, 
+#'        iSSFCovars = c("distance", "prctSage", "elevation"), 
+#'        probDetCovars = "prctSage", distColumns = c("utmX","utmY"),
+#'        maximumGap = 4)
+#' 
+#' 
+pdissf <- function(habitatDF, CellID,
+                   habitatCellID,
+                   maximumGap = 4, 
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
@@ -144,7 +180,7 @@ pdissf <- function(habitatDF, CellID,
   }
   PDiSSFFit <- PDiSSFModel(selection = selectionFormula, p = probDetFormula, 
                 locations = CellID, ncells = nCells, 
-                maxLagArg = maxLagArg, iSSFCovar = iSSFCovars, 
+                maximumGap = maximumGap, iSSFCovar = iSSFCovars, 
                 LogCovar = c("Intercept", probDetCovars))
   return(PDiSSFFit)
 }

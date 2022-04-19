@@ -12,8 +12,9 @@
 #' 
 #' @param ncells Number of cells in the study area
 #' 
-#' @param maxLagArg Number of matrix multiplications to toggle the matrix by
-#' squaring algorithm. The default is 4 and it is not recommended to change this.
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 4
+#' (3 consecutive missing locations). Larger max lags will increase computing time
+#' and may result in non convergence.
 #' 
 #' @param iSSFCovar Covariates for the iSSF
 #' 
@@ -21,7 +22,7 @@
 #' 
 #' 
 
-PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar, 
+PDiSSFModel <- function (selection, p, locations, ncells, maximumGap, iSSFCovar, 
     LogCovar) {
     if (missing(selection)) 
         stop("Model for habitat selection must be specified")
@@ -66,14 +67,14 @@ PDiSSFModel <- function (selection, p, locations, ncells, maxLagArg, iSSFCovar,
         strt.vals <- rep(0, k.iSSF + k.p)
         out <- nlminb(start = strt.vals, objective = PDiSSFLogLike, 
             X1 = X.iSSF, X2 = X.p, locations = locations, k1 = k.iSSF, 
-            k2 = k.p, maxLagArg = maxLagArg)
+            k2 = k.p, maximumGap = maximumGap)
         
         iSSF.coefs <- out$par[1:k.iSSF]
         p.coefs <- out$par[(k.iSSF + 1):(k.iSSF + k.p)]
         
         hessian <- F.2nd.deriv(out$par, PDiSSFLogLike, X1 = X.iSSF, 
                     X2 = X.p, locations = locations, k1 = k.iSSF, 
-                    k2 = k.p, maxLagArg = maxLagArg)
+                    k2 = k.p, maximumGap = maximumGap)
         SEs <- sqrt(diag(solve(hessian)))
 
         # iSSFDataframe <- data.frame(Covar = iSSFCovar, Coef = iSSF.coefs[order(iSSFCovar)], ### original

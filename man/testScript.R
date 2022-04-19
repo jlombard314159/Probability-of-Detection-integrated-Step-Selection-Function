@@ -10,12 +10,14 @@ mean(!is.na(locations$unitID))
 
 # Standard conditional logistic, if distColumn = NULL.
 pdissf(habitatDF = habitat, 
+       habitatCellID = 'unitID',
        CellID = locations$unitID, 
        iSSFCovars = c("prctSage", "elevation"), 
        probDetCovars = NULL)
 
 # integrated step selection function (iSSF) using step length,
 pdissf(habitatDF = habitat, 
+       habitatCellID = 'unitID',
        CellID = locations$unitID, 
        iSSFCovars = c("distance", "prctSage", "elevation"), 
        probDetCovars = NULL, 
@@ -23,10 +25,11 @@ pdissf(habitatDF = habitat,
 
 # PDRSF including step length
 pdissf(habitatDF = habitat, 
-       CellID = locations$unitID, 
+       CellID = locations$unitID,
+       habitatCellID = 'unitID',
        iSSFCovars = c("distance", "prctSage", "elevation"), 
        probDetCovars = "prctSage", distColumns = c("utmX","utmY"),
-       maxLagArg = 4)
+       maximumGap = 4)
 
 ## End(Not run)
 
