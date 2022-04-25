@@ -75,6 +75,7 @@ PDiSSFModel <- function (selection, p, locations, ncells, maximumGap, iSSFCovar,
         hessian <- F.2nd.deriv(out$par, PDiSSFLogLike, X1 = X.iSSF, 
                     X2 = X.p, locations = locations, k1 = k.iSSF, 
                     k2 = k.p, maximumGap = maximumGap)
+
         SEs <- sqrt(diag(solve(hessian)))
 
         # iSSFDataframe <- data.frame(Covar = iSSFCovar, Coef = iSSF.coefs[order(iSSFCovar)], ### original

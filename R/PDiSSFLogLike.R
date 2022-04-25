@@ -55,8 +55,8 @@ PDiSSFLogLike <- function (beta, X1, X2, locations, k1, k2, maximumGap) {
     if (max(Lag) > 2) {
       for (j in 3:max(Lag - 1)) {
         output <- B
-        if (length(3:j) > maximumGap) {
-          numMults <- maximumGap
+        if (length(3:j) > maximumGap-1) {
+          numMults <- maximumGap-1
         }
         else {
           numMults <- length(3:j)

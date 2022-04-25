@@ -12,9 +12,9 @@
 #' @param habitatCellID Column in the habitat DF that contains unique ID for the
 #' habitat data
 #' 
-#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 4
-#' (3 consecutive missing locations). Larger max lags will increase computing time
-#' and may result in non convergence.
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 3
+#' (3 consecutive missing locations). Large gaps will cause an exponential increase in
+#' memory requirements and computing time. This may result in convergence issues.
 #' 
 #' @param iSSFCovars covariates in the integrated step selection function model
 #' 
@@ -32,35 +32,28 @@
 #' # Fix success rate
 #' mean(!is.na(locations$unitID))
 #' 
-#' # Computing time for larger data sets may vary WIDELY
-#' 
-# Standard conditional logistic, if distColumn = NULL.
-#' pdissf(habitatDF = habitat, 
-#'        habitatCellID = 'unitID',
-#'        CellID = locations$unitID,
-#'        iSSFCovars = c("prctSage", "elevation"), 
-#'        probDetCovars = NULL)
+#' # Computing time for larger data sets may vary WIDEL
 #' 
 #' # integrated step selection function (iSSF) using step length,
 #' pdissf(habitatDF = habitat,
 #'        habitatCellID = 'unitID',
 #'        CellID = locations$unitID, 
-#'        iSSFCovars = c("distance", "prctSage", "elevation"), 
+#'        iSSFCovars = c('distance', 'prctSage', 'elevation'), 
 #'        probDetCovars = NULL, 
-#'        distColumns = c("utmX","utmY"))
+#'        distColumns = c('utmX','utmY'))
 #' 
 #' # PDRSF including step length
 #' pdissf(habitatDF = habitat, 
 #'        habitatCellID = 'unitID',
 #'        CellID = locations$unitID, 
-#'        iSSFCovars = c("distance", "prctSage", "elevation"), 
-#'        probDetCovars = "prctSage", distColumns = c("utmX","utmY"),
+#'        iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+#'        probDetCovars = 'prctSage', distColumns = c('utmX','utmY'),
 #'        maximumGap = 4)
 #' 
 #' 
 pdissf <- function(habitatDF, CellID,
                    habitatCellID,
-                   maximumGap = 4, 
+                   maximumGap = 3, 
                    iSSFCovars = NULL, 
                  probDetCovars = NULL, distColumns = NULL) {
   
@@ -74,6 +67,10 @@ pdissf <- function(habitatDF, CellID,
   if(!(habitatCellID %in% colnames(habitatDF))){
     
     stop(paste('Your habitat DF does not have the column: ', habitatCellID))
+  }
+  
+  if(maximumGap <1){
+    stop(paste('Maximum Gap can not be less than 1. It must be a positive integer.'))
   }
   
   noNACellID <- unique(CellID[!is.na(CellID)])
