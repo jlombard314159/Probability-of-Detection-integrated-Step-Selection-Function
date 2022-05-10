@@ -5,34 +5,37 @@
 \title{pdissf}
 \usage{
 pdissf(
-  habitatDF,
-  CellID,
-  habitatCellID,
-  maximumGap = 3,
-  iSSFCovars = NULL,
-  probDetCovars = NULL,
-  distColumns = NULL
+habitatDF,
+habitatCellID,
+CellID,
+maximumGap = 3,
+iSSFCovars = NULL,
+probDetCovars = NULL,
+distColumns = NULL
 )
 }
 \arguments{
 \item{habitatDF}{Dataframe of habitat information}
 
-\item{CellID}{Column that contains the unique ID for a cell location in the study
-area}
+\item{CellID}{Column in the habitat DF that contains unique IDs for 
+the habitat data. Some will have been used and also in the vector of CellID.}
 
-\item{habitatCellID}{Column in the habitat DF that contains unique ID for the
-habitat data}
+\item{habitatCellID}{Column that contains the ID for cells in the study area 
+as they were used by the animal (order is important). Should have IDs found 
+in habitatCellID. Missing fixes should contain 'NA'.}
 
-\item{maximumGap}{Maximum allowable number of consecutive missing fixes. Default is 3
-(3 consecutive missing locations). Large gaps will cause an exponential increase in
-memory requirements and computing time. This may result in convergence issues.}
+\item{maximumGap}{Maximum allowable number of consecutive missing fixes. 
+Default is 3 (3 consecutive missing locations). Large gaps will cause an 
+exponential increase in memory requirements and computing time. This may 
+result in convergence issues.}
 
 \item{iSSFCovars}{covariates in the integrated step selection function model}
 
 \item{probDetCovars}{covariates for the probability of detection}
 
 \item{distColumns}{If distance is needed as a covariate, in either iSSF or the
-probability of detection, then identify the columns that contain this information}
+probability of detection, then identify the columns that contain this information.
+These need to be in UTM.}
 }
 \description{
 Helper function to set up the log-likelihood estimation
@@ -49,19 +52,19 @@ mean(!is.na(locations$unitID))
 
 # integrated step selection function (iSSF) using step length,
 pdissf(habitatDF = habitat,
-       habitatCellID = 'unitID',
-       CellID = locations$unitID, 
-       iSSFCovars = c('distance', 'prctSage', 'elevation'), 
-       probDetCovars = NULL, 
-       distColumns = c('utmX','utmY'))
+      CellID = locations$unitID, 
+      habitatCellID = 'unitID',
+      iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+      probDetCovars = NULL, 
+      distColumns = c('utmX','utmY'))
 
-# PDRSF including step length
+# PDiSSF including step length
 pdissf(habitatDF = habitat, 
-       habitatCellID = 'unitID',
-       CellID = locations$unitID, 
-       iSSFCovars = c('distance', 'prctSage', 'elevation'), 
-       probDetCovars = 'prctSage', distColumns = c('utmX','utmY'),
-       maximumGap = 4)
+      CellID = locations$unitID, 
+      habitatCellID = 'unitID',
+      iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+      probDetCovars = 'prctSage', distColumns = c('utmX','utmY'),
+      maximumGap = 3)
 
 
 }

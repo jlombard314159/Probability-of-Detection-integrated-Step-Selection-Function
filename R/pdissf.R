@@ -6,23 +6,36 @@
 #' 
 #' @param habitatDF Dataframe of habitat information
 #' 
-#' @param CellID Column that contains the unique ID for a cell location in the study
-#' area
+#' @param CellID Column in the habitat DF that contains unique IDs for 
+#' the habitat data. Some will have been used and also in the vector of CellID.
 #' 
-#' @param habitatCellID Column in the habitat DF that contains unique ID for the
-#' habitat data
+#' @param habitatCellID Column that contains the ID for cells in the study area 
+#' as they were used by the animal (order is important). Should have IDs found 
+#' in habitatCellID. Missing fixes should contain 'NA'.
 #' 
-#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 3
-#' (3 consecutive missing locations). Large gaps will cause an exponential increase in
-#' memory requirements and computing time. This may result in convergence issues.
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. 
+#' Default is 3 (3 consecutive missing locations). Large gaps will cause an 
+#' exponential increase in memory requirements and computing time. This may 
+#' result in convergence issues.
 #' 
 #' @param iSSFCovars covariates in the integrated step selection function model
 #' 
 #' @param probDetCovars covariates for the probability of detection
 #' 
 #' @param distColumns If distance is needed as a covariate, in either iSSF or the
-#' probability of detection, then identify the columns that contain this information
+#' probability of detection, then identify the columns that contain this information.
+#' These need to be in UTM.
 #' 
+#' 
+#' @usage pdissf(
+#' habitatDF,
+#' habitatCellID,
+#' CellID,
+#' maximumGap = 3,
+#' iSSFCovars = NULL,
+#' probDetCovars = NULL,
+#' distColumns = NULL
+#' )
 #' 
 #' @examples
 #' library(PDiSSF)
@@ -34,21 +47,21 @@
 #' 
 #' # Computing time for larger data sets may vary WIDEL
 #' 
-#' # integrated step selection function (iSSF) using step length,
-#' pdissf(habitatDF = habitat,
-#'        habitatCellID = 'unitID',
-#'        CellID = locations$unitID, 
-#'        iSSFCovars = c('distance', 'prctSage', 'elevation'), 
-#'        probDetCovars = NULL, 
-#'        distColumns = c('utmX','utmY'))
-#' 
-#' # PDRSF including step length
-#' pdissf(habitatDF = habitat, 
-#'        habitatCellID = 'unitID',
-#'        CellID = locations$unitID, 
-#'        iSSFCovars = c('distance', 'prctSage', 'elevation'), 
-#'        probDetCovars = 'prctSage', distColumns = c('utmX','utmY'),
-#'        maximumGap = 4)
+#'# integrated step selection function (iSSF) using step length,
+#'pdissf(habitatDF = habitat,
+#'       CellID = locations$unitID, 
+#'       habitatCellID = 'unitID',
+#'       iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+#'       probDetCovars = NULL, 
+#'       distColumns = c('utmX','utmY'))
+#'
+#'# PDiSSF including step length
+#'pdissf(habitatDF = habitat, 
+#'       CellID = locations$unitID, 
+#'       habitatCellID = 'unitID',
+#'       iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+#'       probDetCovars = 'prctSage', distColumns = c('utmX','utmY'),
+#'       maximumGap = 3)
 #' 
 #' 
 pdissf <- function(habitatDF, CellID,
