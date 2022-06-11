@@ -1,7 +1,7 @@
 Package: PDiSSF
 Type: Package
 Title: Probability of Detection integrated Step Selection Function (PDiSSF)
-Version: 1.0.5
+Version: 1.0.6
 Date: 2022-05-10
 Maintainer: John Lombardi <jlombard314@gmail.com>
 Author: Ryan Nielson <ryan@eagleenvironmental.net> 
@@ -11,7 +11,7 @@ Author: Ryan Nielson <ryan@eagleenvironmental.net>
                 Trent McDonald (trent@mcdonalddatasciences.com) 
 Description: This package estimates the probability of detection integrated sep selection function (PDiSSF) 
   presented in Vales et al. (2022), which was originally presented as the "RSF for GPS fix success" 
-  in Nielson et al. (2009). Go to ___url_to_github where we will have access or links to thes articles,
+  in Nielson et al. (2009). Go to ___url_to_github where we will have access or links to these articles,
   some notes for users, and other example data and simulation code. 
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.6)
