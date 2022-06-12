@@ -21,7 +21,10 @@ This package estimates the probability of detection integrated step selection fu
 
 The package provides some example data for running, along with examples in the specific help files.
 
-Additional data are provided in the 'exampleHabitat' and 'exampleLocations' .RData files in the ./data folder.exampleHabitat.RData
+Additional data are provided in the 'exampleHabitat' and 'exampleLocations' .RData files in the ./data folder.
+
+
+#### exampleHabitat.RData
 A data.frame named habitat containing covariate values for all 30 m cells within the deer’s home range. Data from the analysis by Vales et al. (2022). See the manuscript for details. 
 This data.frame contains the following information:
 pointID: unique ID for each 30 m cell in the deer’s home range
@@ -33,15 +36,14 @@ drds: distance (m) to nearest road
 ealbers: easting coordinate for the cell in UTM
 nalbers: northing coordinate for the cell in UTM
 
-exampleLocations.RData
+#### exampleLocations.RData
 A data.frame named locations of GPS fixes from one deer used in the analysis by Vales et al. (2022). See the manuscript for details. This data.frame contains the following information:
 lineno: Ignored. This is simply to recognize that all fix attempts (missing and successful) need to be represented in the data. The numbers should be consecutive and have no gaps.
 pointID: cell ID for 30 m cells where the deer was located at each fix attempt. Missing locations should be in the data and represented by NA. All pointID values should be represented in the habitat data.frame. 
 
 Example model run
-library(PDiSSF)
-# fit iSSF
-# takes ~2 minutes
+``` library(PDiSSF)
+#takes about 2 minutes
 pdissf(habitatDF = habitat,
        CellID = locations$pointID,
        habitatCellID = 'pointID',
@@ -62,6 +64,7 @@ pdissf(habitatDF = habitat,
        maximumGap = 3
 )
 
+```
 
 ### Authors 
 John Lombardi (jlombard314@gmail.com) and Ryan Nielson (Eagle Environmental, Inc.; ryan@eagleenvironmental.net)
