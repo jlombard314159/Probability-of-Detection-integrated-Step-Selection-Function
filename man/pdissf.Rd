@@ -42,8 +42,8 @@ Helper function to set up the log-likelihood estimation
 }
 \examples{
 library(PDiSSF)
-data(exampleHabitat)
-data(exampleLocations)
+data(habitat)
+data(locations)
 
 # Fix success rate
 mean(!is.na(locations$unitID))
@@ -51,27 +51,20 @@ mean(!is.na(locations$unitID))
 # Computing time for larger data sets may vary WIDEL
 
 # integrated step selection function (iSSF) using step length,
-library(PDiSSF)
-# fit iSSF
-# takes ~2 minutes
 pdissf(habitatDF = habitat,
-      CellID = locations$unitID,
+      CellID = locations$unitID, 
       habitatCellID = 'unitID',
-      iSSFCovars = c("ab", "dcfe", "drds", "distance"),
-      probDetCovars = NULL,
-      distColumns  = c("ealbers","nalbers"),
+      iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+      probDetCovars = NULL, 
+      distColumns = c('utmX','utmY'))
+
+# PDiSSF including step length
+pdissf(habitatDF = habitat, 
+      CellID = locations$unitID, 
+      habitatCellID = 'unitID',
+      iSSFCovars = c('distance', 'prctSage', 'elevation'), 
+      probDetCovars = 'prctSage', distColumns = c('utmX','utmY'),
       maximumGap = 3)
-
-
-# fit PDiSSF
-# takes ~50 minutes
-pdissf(habitatDF = habitat,
-       CellID = locations$unitID,
-       habitatCellID = 'unitID',
-       iSSFCovars = c("ab", "dcfe", "drds", "distance"),
-       probDetCovars = c("cc75"),
-       distColumns  = c("ealbers","nalbers"),
-       maximumGap = 3)
 
 
 }
