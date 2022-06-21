@@ -40,7 +40,7 @@ included in the model, identify the columns in the habitat DF that contain x-y
 coordinates in 2-D planar coordinates such as UTM or State Plane.}
 }
 \value{
-Results of model estimation. converged = 0 if the algorithim converged, 
+Results of model estimation. Converged = 0 if the algorithim converged, 
 and 1 if there was not covergence.
 }
 \description{

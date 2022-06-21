@@ -38,7 +38,7 @@
 #' estimation is ongoing and can be used to identify when the process has stalled.
 #'  The system time is not printed when running in parallel.
 #' 
-#' @return Results of model estimation. converged = 0 if the algorithim converged, 
+#' @return Results of model estimation. Converged = 0 if the algorithim converged, 
 #' and 1 if there was not covergence.
 #' 
 #' @usage pdissf(

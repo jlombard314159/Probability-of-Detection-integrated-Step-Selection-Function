@@ -42,6 +42,12 @@ lineno: Ignored. This is simply to recognize that all fix attempts (missing and 
 pointID: cell ID for 30 m cells where the deer was located at each fix attempt. Missing locations should be in the data and represented by NA. All pointID values should be represented in the habitat data.frame. 
 
 Example model run
+Timing is based on:
+Lenovo Yoga
+1.8 Ghz 
+Intel i7
+16gb RAM
+
 ``` library(PDiSSF)
 #takes about 2 minutes
 pdissf(habitatDF = habitat,
