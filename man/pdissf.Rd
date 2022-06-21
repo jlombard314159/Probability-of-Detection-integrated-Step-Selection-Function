@@ -19,7 +19,7 @@ distColumns = NULL
 
 \item{CellID}{Column name in the locations file that contains the ID for cells 
 in the study area as they were used by the animal (chronological order is important).
- Should have IDs found in habitatCellID. Missing fixes should be 'NA'.}
+Should have IDs found in habitatCellID. Missing fixes should be 'NA'.}
 
 \item{habitatCellID}{Column in the habitat DF that contains unique IDs for the 
 habitat data. Some will have been used and thus also in the vector of CellID. 
@@ -32,11 +32,16 @@ result in convergence issues.}
 
 \item{iSSFCovars}{covariates for step selection}
 
-\item{probDetCovars}{covariates for the probability of detection}
+\item{probDetCovars}{Character string of covariate names for estimating the 
+probability of detection. Set to NULL for fitting a standard iSSF.}
 
 \item{distColumns}{If distance from previous location (step length) is to be 
 included in the model, identify the columns in the habitat DF that contain x-y 
 coordinates in 2-D planar coordinates such as UTM or State Plane.}
+}
+\value{
+Results of model estimation. converged = 0 if the algorithim converged, 
+and 1 if there was not covergence.
 }
 \description{
 This package fits the probability of detection integrated detection 
@@ -47,6 +52,10 @@ details and examples.
 }
 \details{
 pdissf
+
+The system time is printed to the console to indicate that model 
+estimation is ongoing and can be used to identify when the process has stalled.
+ The system time is not printed when running in parallel.
 }
 \examples{
 library(PDiSSF)

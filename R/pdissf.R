@@ -18,7 +18,7 @@
 #' 
 #' @param CellID Column name in the locations file that contains the ID for cells 
 #' in the study area as they were used by the animal (chronological order is important).
-#'  Should have IDs found in habitatCellID. Missing fixes should be 'NA'.
+#' Should have IDs found in habitatCellID. Missing fixes should be 'NA'.
 #' 
 #' @param maximumGap Maximum allowable number of consecutive missing fixes. 
 #' Default is 3 (3 consecutive missing locations). Large gaps will cause an 
@@ -27,12 +27,19 @@
 #' 
 #' @param iSSFCovars covariates for step selection
 #' 
-#' @param probDetCovars covariates for the probability of detection
+#' @param probDetCovars Character string of covariate names for estimating the 
+#' probability of detection. Set to NULL for fitting a standard iSSF.
 #' 
 #' @param distColumns If distance from previous location (step length) is to be 
 #' included in the model, identify the columns in the habitat DF that contain x-y 
 #' coordinates in 2-D planar coordinates such as UTM or State Plane.
 #' 
+#' @details The system time is printed to the console to indicate that model 
+#' estimation is ongoing and can be used to identify when the process has stalled.
+#'  The system time is not printed when running in parallel.
+#' 
+#' @return Results of model estimation. converged = 0 if the algorithim converged, 
+#' and 1 if there was not covergence.
 #' 
 #' @usage pdissf(
 #' habitatDF,
