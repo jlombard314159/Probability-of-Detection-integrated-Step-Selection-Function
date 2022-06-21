@@ -13,5 +13,5 @@ getModMatrix(f, ncells)
 }
 \description{
 Mainly a helper function, this creates the model matrix for
-the optimization process
+the optimization process. Not recommended for isolated use.
 }

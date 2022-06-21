@@ -16,5 +16,6 @@ iSSFLogLike(beta, X1, locations, k1)
 \item{k1}{Number of covariates for the iSSF}
 }
 \description{
-The log-likelihood formulation for the iSSF
+The log-likelihood formulation for the iSSF.
+Not recommended for isolated use.
 }

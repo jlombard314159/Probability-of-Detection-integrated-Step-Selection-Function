@@ -2,7 +2,8 @@
 #' 
 #' @name iSSFLogLike
 #'
-#' @description The log-likelihood formulation for the iSSF
+#' @description The log-likelihood formulation for the iSSF.
+#' Not recommended for isolated use.
 #' 
 #' @param beta Coefficients to be estimated
 #' 

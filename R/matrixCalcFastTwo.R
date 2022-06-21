@@ -2,7 +2,7 @@
 #' 
 #' @name matrixCalcFastTwo
 #'
-#' @description Calls the rcpp file
+#' @description Calls the rcpp file. Not recommended for isolated use.
 #' 
 #' @param matrixOne Output to be multiplied multTimes times
 #' 

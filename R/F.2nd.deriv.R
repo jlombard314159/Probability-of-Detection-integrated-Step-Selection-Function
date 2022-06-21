@@ -3,7 +3,7 @@
 #' @name F.2nd.deriv
 #'
 #' @description This function calculates the second derivative (hessian value)
-#' for a function
+#' for a function. Not recommended for isolated use.
 #' 
 #' @param x A vector
 #' @param FUN function to be inputted

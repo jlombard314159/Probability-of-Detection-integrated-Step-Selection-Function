@@ -2,7 +2,8 @@
 #' 
 #' @name PDiSSFModel
 #'
-#' @description Sets up the parameter estimation for the log-likelihood function
+#' @description Sets up the parameter estimation for the log-likelihood function.
+#' Not recommended for isolated use.
 #' 
 #' @param selection Model for habitat selection
 #' 
@@ -12,13 +13,15 @@
 #' 
 #' @param ncells Number of cells in the study area
 #' 
-#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 4
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 3
 #' (3 consecutive missing locations). Larger max lags will increase computing time
 #' and may result in non convergence.
 #' 
-#' @param iSSFCovar Covariates for the iSSF
+#' @param iSSFCovar Covariates for the iSSF. Not explicitly specified by user, 
+#' comes directly from pdissf.R.
 #' 
-#' @param LogCovar Covariate for ...
+#' @param LogCovar Covariates for the probability of detection, plus an intercept
+#' term. Not explicitly specified by user, comes directly from pdissf.R
 #' 
 #' 
 

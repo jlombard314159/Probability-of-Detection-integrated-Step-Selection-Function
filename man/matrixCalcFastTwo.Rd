@@ -14,5 +14,5 @@ matrixCalcFastTwo(matrixOne, multTimes, matrixOfDiag)
 \item{matrixOfDiag}{Empty matrix of the form diag(1, ncells)}
 }
 \description{
-Calls the rcpp file
+Calls the rcpp file. Not recommended for isolated use.
 }

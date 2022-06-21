@@ -2,7 +2,7 @@
 % Please edit documentation in R/pdissf.R
 \name{pdissf}
 \alias{pdissf}
-\title{pdissf}
+\title{Fits the probability of detection integrated step selection function (PDiSSF)}
 \usage{
 pdissf(
 habitatDF,
@@ -17,28 +17,36 @@ distColumns = NULL
 \arguments{
 \item{habitatDF}{Dataframe of habitat information}
 
-\item{CellID}{Column in the habitat DF that contains unique IDs for 
-the habitat data. Some will have been used and also in the vector of CellID.}
+\item{CellID}{Column name in the locations file that contains the ID for cells 
+in the study area as they were used by the animal (chronological order is important).
+ Should have IDs found in habitatCellID. Missing fixes should be 'NA'.}
 
-\item{habitatCellID}{Column that contains the ID for cells in the study area 
-as they were used by the animal (order is important). Should have IDs found 
-in habitatCellID. Missing fixes should contain 'NA'.}
+\item{habitatCellID}{Column in the habitat DF that contains unique IDs for the 
+habitat data. Some will have been used and thus also in the vector of CellID. 
+Missing values are not allowed.}
 
 \item{maximumGap}{Maximum allowable number of consecutive missing fixes. 
 Default is 3 (3 consecutive missing locations). Large gaps will cause an 
 exponential increase in memory requirements and computing time. This may 
 result in convergence issues.}
 
-\item{iSSFCovars}{covariates in the integrated step selection function model}
+\item{iSSFCovars}{covariates for step selection}
 
 \item{probDetCovars}{covariates for the probability of detection}
 
-\item{distColumns}{If distance is needed as a covariate, in either iSSF or the
-probability of detection, then identify the columns that contain this information.
-These need to be in UTM.}
+\item{distColumns}{If distance from previous location (step length) is to be 
+included in the model, identify the columns in the habitat DF that contain x-y 
+coordinates in 2-D planar coordinates such as UTM or State Plane.}
 }
 \description{
-Helper function to set up the log-likelihood estimation
+This package fits the probability of detection integrated detection 
+function presented in Vales et al. (2022) and presented as the "RSF for GPS fix success" 
+in Nielson et al. (2009). As of now, this package relies on 
+totally pre-processed data. See help(habitat) and help(locations) for more 
+details and examples.
+}
+\details{
+pdissf
 }
 \examples{
 library(PDiSSF)
@@ -48,7 +56,7 @@ data(locations)
 # Fix success rate
 mean(!is.na(locations$unitID))
 
-# Computing time for larger data sets may vary WIDEL
+# Computing time for larger data sets may vary
 
 # integrated step selection function (iSSF) using step length,
 pdissf(habitatDF = habitat,

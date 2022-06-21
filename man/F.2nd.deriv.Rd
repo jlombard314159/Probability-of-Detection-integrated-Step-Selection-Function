@@ -16,5 +16,5 @@ F.2nd.deriv(x, FUN, ...)
 }
 \description{
 This function calculates the second derivative (hessian value)
-for a function
+for a function. Not recommended for isolated use.
 }

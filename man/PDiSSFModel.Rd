@@ -15,14 +15,17 @@ PDiSSFModel(selection, p, locations, ncells, maximumGap, iSSFCovar, LogCovar)
 
 \item{ncells}{Number of cells in the study area}
 
-\item{maximumGap}{Maximum allowable number of consecutive missing fixes. Default is 4
+\item{maximumGap}{Maximum allowable number of consecutive missing fixes. Default is 3
 (3 consecutive missing locations). Larger max lags will increase computing time
 and may result in non convergence.}
 
-\item{iSSFCovar}{Covariates for the iSSF}
+\item{iSSFCovar}{Covariates for the iSSF. Not explicitly specified by user, 
+comes directly from pdissf.R.}
 
-\item{LogCovar}{Covariate for ...}
+\item{LogCovar}{Covariates for the probability of detection, plus an intercept
+term. Not explicitly specified by user, comes directly from pdissf.R}
 }
 \description{
-Sets up the parameter estimation for the log-likelihood function
+Sets up the parameter estimation for the log-likelihood function.
+Not recommended for isolated use.
 }

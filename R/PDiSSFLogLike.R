@@ -2,7 +2,8 @@
 #' 
 #' @name PDiSSFLogLike
 #'
-#' @description Calculates the loglikelihood value for a set of parameters
+#' @description Calculates the loglikelihood value for a set of parameters.
+#' Not recommended for isolated use.
 #' 
 #' @param beta Coefficients to be estimated
 #' 
@@ -17,7 +18,7 @@
 #' @param k2 Number of covariates for probability of detection. Equal to 0
 #' if no probability of detection is being estimated.
 #' 
-#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 4
+#' @param maximumGap Maximum allowable number of consecutive missing fixes. Default is 3
 #' (3 consecutive missing locations). Larger max lags will increase computing time
 #' and may result in non convergence.
 #' 
