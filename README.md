@@ -41,7 +41,9 @@ A data.frame named locations of GPS fixes from one deer used in the analysis by 
 lineno: Ignored. This is simply to recognize that all fix attempts (missing and successful) need to be represented in the data. The numbers should be consecutive and have no gaps.
 pointID: cell ID for 30 m cells where the deer was located at each fix attempt. Missing locations should be in the data and represented by NA. All pointID values should be represented in the habitat data.frame. 
 
-Example model run
+Example model run based on 'exampleHabitat' and 'exampleLocation' data sets. These
+are provided in the ./data folder.
+
 Timing is based on:
 Lenovo Yoga
 1.8 Ghz 
