@@ -25,16 +25,16 @@ Additional data are provided in the 'exampleHabitat' and 'exampleLocations' .RDa
 
 
 #### exampleHabitat.RData
-A data.frame named habitat containing covariate values for all 30 m cells within the deer’s home range. Data from the analysis by Vales et al. (2022). See the manuscript for details. 
-This data.frame contains the following information:
+A data.frame named habitat containing covariate values for all 30 m cells within the deer’s home range. Data from the analysis by Vales et al. (2022). See the manuscript for details. This data.frame contains the following information: 
+
 pointID: unique ID for each 30 m cell in the deer’s home range
-cc: Percent canopy cover for a cell
-cc75: cancopy cover shifted (centered) by subtracting 75 meters. 
+cc: Percent canopy cover for a cell 
+cc75: cancopy cover shifted (centered) by subtracting 75 meters 
 ab: accepted biomass (amount of neutral and selected forage)
 dcfe: distance (m) to cover-forage edge
-drds: distance (m) to nearest road
-ealbers: easting coordinate for the cell in UTM
-nalbers: northing coordinate for the cell in UTM
+drds: distance (m) to the nearest road 
+ealbers: easting coordinate for the cell in Albers projection 
+nalbers: northing coordinate for the cell in Albers projection
 
 #### exampleLocations.RData
 A data.frame named locations of GPS fixes from one deer used in the analysis by Vales et al. (2022). See the manuscript for details. This data.frame contains the following information:
